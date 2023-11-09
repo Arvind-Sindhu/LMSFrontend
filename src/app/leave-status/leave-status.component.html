@@ -1,0 +1,31 @@
+<div class="leave-status">
+    <h2>Leave Status</h2>
+
+    
+
+    <table *ngIf="leaveStatusData">
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Leave Start Date</th>
+                <th>Leave End Date</th>
+                <th>Leave Type</th>
+                <th>Reason</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let leave of leaveStatusData">
+                <td>{{ leave.employeeName }}</td>
+                <td>{{ leave.leaveStartDate | date:'yyyy-MM-dd' }}</td>
+                <td>{{ leave.leaveEndDate | date:'yyyy-MM-dd' }}</td>
+                <td>{{ leave.leaveType }}</td>
+                <td>{{ leave.reason }}</td>
+                <td>
+                    <button (click)="editLeave(leave)">Edit</button>
+                    <button (click)="deleteLeave(leave)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,60 @@
+/* signup.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+}
+
+h1 {
+    text-align: center;
+}
+
+#signupForm {
+    background-color: #f7f0f0;
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 85%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #1877f2; /* Facebook blue */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0e5091; /* Darker blue on hover */
+}
+
+p {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #1877f2; /* Facebook blue */
+}
+
+a:hover {
+    text-decoration: underline;
+}

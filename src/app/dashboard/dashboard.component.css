@@ -1,0 +1,100 @@
+.dashboard {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+  
+    /* Add a line separator */
+    border-right: 1px solid #ddd;
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+  
+    /* Make the sidebar occupy the full height with scrolling if needed */
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    padding: 10px;
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .sidebar a:hover {
+    color: #00f;
+  }
+  
+.popup-content {
+    background-color: #f7f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Adjust the width as needed */
+  }
+  
+.popup-content form input[type="text"],
+.popup-content form input[type="date"],
+.popup-content form select,
+.popup-content form textarea {
+  width: 85%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.popup-content form select {
+    height: 40px; /* Adjust the height as needed */
+  }
+  
+  .popup-content form button {
+    background-color: #1877f2; /* Facebook blue */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .popup-content form button[type="submit"]:hover {
+    background-color: #0e5091; /* Darker blue on hover */
+  }
+  
+  .popup-content form button[type="button"] {
+    background-color: #ccc; /* Light gray for the reset button */
+  }
+  
+  .popup-content form button[type="button"]:hover {
+    background-color: #bbb; /* Slightly darker gray on hover */
+  }
+  .popup {
+    /* Center the popup both horizontally and vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background overlay */
+    z-index: 999; /* Ensure it's above other elements */
+  }
+  .popup-content form cross{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+   
+  }
+   
