@@ -1,8 +1,9 @@
 export interface LeaveApplication {
- 
-  employeeName?: string;
-  leaveStartDate?: Date;
-  leaveEndDate?: Date;
+  EmployeeName?:string;
+  managerName?: string;
+  StartDate?: Date ;
+  EndDate?: Date ;
   leaveType?: string;
   reason?: string;
+  userId: number; 
 }

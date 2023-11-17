@@ -2,11 +2,15 @@
   <div class="sidebar">
     <ul>
       <li><a (click)="openLeaveApplicationPopup()">Apply Leave</a></li>
+      <li><a routerLink="/leave-management">Leave Management</a></li>
       <li><a routerLink="/leave-status">Leave Status</a></li>
-      <li><a routerLink="/admin">Admin</a></li>
+     
       <li><a (click)="logout()">Logout</a></li>
     </ul>
   </div>
+
+  <div class="content">
+    <h2>Welcome to the Dashboard, {{ username }}!</h2>
   <!-- Your existing dashboard content -->
   
   <!-- Leave Application Form (Initially hidden) -->
@@ -14,30 +18,50 @@
     <div class="popup-content">
       <button class="close-button" (click)="closeLeaveApplicationPopup()">X</button>
       <form (ngSubmit)="submitLeaveApplication()">
-       
-        <label for="employeeName">Employee Name:</label>
-        <input type="text" id="employeeName" name="employeeName" [(ngModel)]="leaveApplicationData.employeeName" required>
+  
+        <label for="employeeInputType">Select Input Type:</label>
+        <select id="employeeInputType" name="employeeInputType" [(ngModel)]="employeeInputType">
+          <option value="dropdown">Dropdown</option>
+          <option value="text">Text</option>
+        </select>
+        
+        <div *ngIf="employeeInputType === 'dropdown'">
+          <label for="managerNameDropdown">Manager Name:</label>
+          <select id="managerNameDropdown" name="managerNameDropdown" [(ngModel)]="leaveApplication.managerName" required>
+           <!-- Use the correct property name in the template -->
+<option *ngFor="let name of managerNames" [value]="name">{{ name }}</option>
 
-        <label for="leaveStartDate">Leave Start Date:</label>
-        <input type="date" id="leaveStartDate" name="leaveStartDate" [(ngModel)]="leaveApplicationData.leaveStartDate " required>
-
-        <label for="leaveEndDate">Leave End Date:</label>
-        <input type="date" id="leaveEndDate" name="leaveEndDate" [(ngModel)]="leaveApplicationData.leaveEndDate" required>
-
+          </select>
+        </div>
+        
+        <div *ngIf="employeeInputType === 'text'">
+          <label for="managerNameText">Manager Name:</label>
+          <input type="text" id="managerNameText" name="managerNameText" [(ngModel)]="leaveApplication.managerName" required>
+        </div>
+        <label for="EmployeeName">Employee Name:</label>
+        <input type="text" id="EmployeeNameText" name="EmployeeNameText" [(ngModel)]="leaveApplication.EmployeeName" required>
+    
+        <label for="StartDate">Leave Start Date:</label>
+        <input type="date" id="StartDate" name="StartDate" [(ngModel)]="leaveApplication.StartDate" required>
+        
+        <label for="EndDate">Leave End Date:</label>
+        <input type="date" id="EndDate" name="EndDate" [(ngModel)]="leaveApplication.EndDate" required>
+        
+  
         <label for="leaveType">Leave Type:</label>
-        <select id="leaveType" name="leaveType" [(ngModel)]="leaveApplicationData.leaveType" required>
+        <select id="leaveType" name="leaveType" [(ngModel)]="leaveApplication.leaveType" required>
           <option value="vacation">Vacation</option>
           <option value="sick">Sick Leave</option>
           <!-- Add more options as needed -->
         </select><br>
-
+  
         <label for="reason">Reason:</label>
-        <textarea id="reason" name="reason" [(ngModel)]="leaveApplicationData.reason" required></textarea>
-
+        <textarea id="reason" name="reason" [(ngModel)]="leaveApplication.reason" required></textarea>
+  
         <button type="submit">Submit</button>
         <button type="button" (click)="resetLeaveApplication()">Reset</button>
       </form>
-      <!-- Leave application form contents (as shown in the previous response) -->
     </div>
   </div>
+  
 </div>

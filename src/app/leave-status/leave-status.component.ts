@@ -1,7 +1,7 @@
 // leave-status.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { LMSService } from '../lms.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-leave-status',
@@ -10,22 +10,28 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LeaveStatusComponent implements OnInit {
   leaveStatusData: any[] | undefined;
-  employeeId: number | undefined;
 
-  constructor(private lmsService: LMSService, private httpClient: HttpClient) {}
+  constructor(private lmsService: LMSService) {}
 
   ngOnInit() {
-    // Call the getLeaveStatusByEmployeeId() method only when there's an employeeId
-    if (this.employeeId) {
-      this.getLeaveStatusByEmployeeId();
-    }
+    // Call the getLeaveStatusByuserId() method when the component is initialized
+    this.getLeaveStatusByuserId();
   }
 
-  getLeaveStatusByEmployeeId() {
-    if (this.employeeId) {
-      this.lmsService.getLeaveStatusByEmployeeId(this.employeeId).subscribe((data) => {
-        this.leaveStatusData = data;
-      });
+  getLeaveStatusByuserId() {
+    debugger;
+    const userId = localStorage.getItem('id');
+  
+    if (userId) {
+      this.lmsService.getLeaveStatusByUserId(userId).subscribe(
+        (data: any[] | undefined) => {
+          console.log('Leave Status Data:', data); // Log the received data
+          this.leaveStatusData = data;
+        },
+        (error: any) => {
+          console.error('Error fetching leave status:', error);
+        }
+      );
     }
   }
 

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { LMSService } from '../lms.service';
 import { LeaveApplication } from '../model';
 import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-dashboard',
@@ -12,17 +11,31 @@ import { FormsModule } from '@angular/forms';
 })
 export class DashboardComponent {
   isPopupOpen = false;
-  leaveApplicationData: LeaveApplication = {
-     
-    employeeName: '',
-    leaveStartDate: new Date(),
-    leaveEndDate: new Date(),
-    leaveType: '',
-    reason: ''
-  };
+  managerNames: string[] = [];
+  employeeInputType: string = 'dropdown';
+  leaveApplication: LeaveApplication = {} as LeaveApplication;
+  username: string | undefined;
 
   constructor(private httpClient: HttpClient, private router: Router, private lmsService: LMSService) {}
 
+  ngOnInit() {
+    // Retrieve the username from localStorage
+    this.username = localStorage.getItem('username')!;
+
+    // Fetch manager names
+    this.getManagerNames();
+  }
+
+  getManagerNames() {
+    this.lmsService.getManagerNames().subscribe(
+      (data: string[]) => {
+        this.managerNames = data;
+      },
+      (error: any) => {
+        console.error('Error fetching manager names:', error);
+      }
+    );
+  }
 
   openLeaveApplicationPopup() {
     this.isPopupOpen = true;
@@ -33,21 +46,24 @@ export class DashboardComponent {
   }
 
   submitLeaveApplication() {
-    debugger;
-    this.lmsService.submitLeaveApplication(this.leaveApplicationData).subscribe(
-      (response) => { 
-       console.log(this.leaveApplicationData);
-       
-      });
-      alert("Leave applied Sucessfully")
+    const userId = localStorage.getItem('id');
+
+    if (userId !== null) {
+      this.leaveApplication.userId = parseInt(userId, 10);
+
+      // Convert dates to strings before sending them to the server
+      this.lmsService.submitLeaveApplication(this.leaveApplication).subscribe(
+        (response) => {
+          console.log(this.leaveApplication);
+        });
+      alert('Leave applied successfully');
       this.closeLeaveApplicationPopup();
-    
-    
+    }
   }
-  
 
   resetLeaveApplication() {
     // Reset the form
+    this.leaveApplication = {} as LeaveApplication;
   }
 
   logout() {

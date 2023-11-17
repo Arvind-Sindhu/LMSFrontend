@@ -1,31 +1,37 @@
 <div class="leave-status">
     <h2>Leave Status</h2>
-
-    
-
+  
     <table *ngIf="leaveStatusData">
-        <thead>
-            <tr>
-                <th>Employee Name</th>
-                <th>Leave Start Date</th>
-                <th>Leave End Date</th>
-                <th>Leave Type</th>
-                <th>Reason</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let leave of leaveStatusData">
-                <td>{{ leave.employeeName }}</td>
-                <td>{{ leave.leaveStartDate | date:'yyyy-MM-dd' }}</td>
-                <td>{{ leave.leaveEndDate | date:'yyyy-MM-dd' }}</td>
-                <td>{{ leave.leaveType }}</td>
-                <td>{{ leave.reason }}</td>
-                <td>
-                    <button (click)="editLeave(leave)">Edit</button>
-                    <button (click)="deleteLeave(leave)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Manager Name</th>
+          <th>Employee Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Leave Type</th>
+          <th>Reason</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let leave of leaveStatusData">
+          <td>{{ leave.userId }}</td>
+          <td>{{ leave.managerName }}</td>
+          <td>{{ leave.employeeName }}</td>
+          <td>{{ leave.startDate | date:'shortDate' }}</td>
+          <td>{{ leave.endDate | date:'shortDate' }}</td>
+          
+          <td>{{ leave.leaveType }}</td>                                      
+          <td>{{ leave.reason }}</td>
+          <td>{{ leave.status }}</td>
+          <td>
+            <button (click)="editLeave(leave)">Edit</button>
+            <button (click)="deleteLeave(leave)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
-</div>
+  </div>
+  
