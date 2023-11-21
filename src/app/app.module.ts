@@ -11,6 +11,11 @@ import { LMSService } from './lms.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LeaveStatusComponent } from './leave-status/leave-status.component';
 import { LeaveManagementComponent } from './leave-management/leave-management.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +31,7 @@ import { LeaveManagementComponent } from './leave-management/leave-management.co
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,ReactiveFormsModule
+    FormsModule,ReactiveFormsModule,MatSidenavModule,MatListModule, BrowserAnimationsModule,MatIconModule
   ],
   providers: [LMSService],
   bootstrap: [AppComponent]

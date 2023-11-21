@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LMSService } from '../lms.service';
 import { LeaveApplication } from '../model';
 import { HttpClient } from '@angular/common/http';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,11 +11,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  @ViewChild('sidenav')
+  sidenav!: MatSidenav;
   isPopupOpen = false;
   managerNames: string[] = [];
   employeeInputType: string = 'dropdown';
   leaveApplication: LeaveApplication = {} as LeaveApplication;
   username: string | undefined;
+  
 
   constructor(private httpClient: HttpClient, private router: Router, private lmsService: LMSService) {}
 
@@ -38,7 +42,9 @@ export class DashboardComponent {
   }
 
   openLeaveApplicationPopup() {
+    this.sidenav.close();
     this.isPopupOpen = true;
+    
   }
 
   closeLeaveApplicationPopup() {
@@ -69,5 +75,7 @@ export class DashboardComponent {
   logout() {
     alert('Logout Successful');
     this.router.navigate(['/login']);
+    history.replaceState('','','/login');
   }
+  
 }

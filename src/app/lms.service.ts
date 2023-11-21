@@ -39,4 +39,15 @@ export class LMSService {
     // Send a PUT request to the API with an empty body
     return this.http.put(url, {});
   }
+
+  updateLeaveApplication(leaveApplication: LeaveApplication): Observable<any> {
+   
+    return this.http.put(`https://localhost:7031/api/ApplyLeave/UpdateApplyLeave`
+    , leaveApplication, { responseType: 'text' });
+  }
+  deleteLeave(id: number) {
+    // Assuming your API expects a DELETE request to delete a leave entry
+  
+    return this.http.delete(`https://localhost:7031/api/ApplyLeave/DeleteApplyLeave/${id}`);
+  }
 }

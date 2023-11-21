@@ -1,60 +1,90 @@
-/* signup.css */
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+/* Container styling */
+form {
+  max-width: 400px;
+  margin: 30px;
+  padding: 60px;
+ 
+  height: 50vh; /* Adjust the height as needed */
+  position: fixed;
+  top: 40%;
+  right: 17%;
+  transform: translate(0%, -50%);
 }
 
+/* Heading styling */
 h1 {
-    text-align: center;
+  text-align: center;
+  color: #c2bdbd;
+  font-size: xx-large;
 }
 
-#signupForm {
-    background-color: #f7f0f0;
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
+/* Label styling */
 label {
-    display: block;
-    margin-bottom: 5px;
+  display: block;
+  margin-bottom: 8px;
+  color: #dfd9d9;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 85%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Input field styling */
+input {
+  width: 130%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
-input[type="submit"] {
-    background-color: #1877f2; /* Facebook blue */
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* Error message styling */
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 0px;
 }
 
-input[type="submit"]:hover {
-    background-color: #0e5091; /* Darker blue on hover */
+/* Submit button styling */
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: stretch; /* Make the button fill the width */
 }
 
+/* Disabled button styling */
+button:disabled {
+  background-color: #ddd;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* Link styling */
 p {
-    text-align: center;
+  text-align: center;
+  margin-top: 20px;
+  color: #d8d0d0;
 }
 
 a {
-    text-decoration: none;
-    color: #1877f2; /* Facebook blue */
+  color: #007bff;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Optional: Hide scrollbars */
+}
+
+.back {
+  background-image: url('./../../assets/signUp background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
 }
