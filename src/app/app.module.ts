@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 
 
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,ReactiveFormsModule,MatSidenavModule,MatListModule, BrowserAnimationsModule,MatIconModule
+    FormsModule,ReactiveFormsModule,MatSidenavModule,MatListModule, BrowserAnimationsModule,MatIconModule,ToastrModule.forRoot()
   ],
   providers: [LMSService],
   bootstrap: [AppComponent]

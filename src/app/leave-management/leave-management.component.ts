@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LMSService } from '../lms.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-leave-management',
@@ -10,11 +11,10 @@ import { LMSService } from '../lms.service';
 export class LeaveManagementComponent implements OnInit {
   leaveManagementData: any[] | undefined;
 
-  constructor(private router: Router, private lmsService: LMSService) {}
+  constructor(private router: Router, private lmsService: LMSService,private toastr: ToastrService) { }
 
   ngOnInit() {
-    // Call the getLeaveManagementData() method when the component is initialized
-   // this.getLeaveManagementData();
+
     this.getLeaveStatusForManaged();
   }
 
@@ -26,47 +26,10 @@ export class LeaveManagementComponent implements OnInit {
         (data: any[]) => {
           this.leaveManagementData = data;
           console.log('Leave Status Data:', this.leaveManagementData);
-        },
-        (error: any) => {
-          console.error('Error fetching leave status for managed users:', error);
         }
       );
     }
   }
-
-  // getLeaveManagementData() {
-  //   debugger;
-  //   const userId = localStorage.getItem('id'); // Get logged-in user ID
-  
-  //   if (userId) {
-  //     // Fetch managerName for the logged-in user
-  //     this.lmsService.getManagerName(parseInt(userId, 10)).subscribe(
-  //       (managerName: string) => {
-  //         console.log('Fetched Manager Name:', managerName);
-  
-  //         // Fetch user data based on the manager's name
-  //         this.lmsService.getLeaveStatusByManagerName(managerName).subscribe(
-  //           (data: any[] | undefined) => {
-  //             console.log('Fetched Leave Management Data:', data);
-  //             // Use the fetched data as needed
-  //             this.leaveManagementData = data;
-  //           },
-  //           (error: any) => {
-  //             console.error('Error fetching leave management data:', error);
-  //           }
-  //         );
-  //       },
-  //       (error: any) => {
-  //         console.error('Error fetching manager name:', error);
-  //       }
-  //     );
-  //   }
-  // }
-
-
-  
-
-  // Add this method to navigate to the LeaveManagementComponent
   goToLeaveManagement() {
     this.router.navigate(['/leave-management']);
   }
@@ -80,14 +43,14 @@ export class LeaveManagementComponent implements OnInit {
   }
 
   private updateLeaveStatus(leave: any, status: string) {
-    const userId = leave.userId; // Assuming userId is available in the leave object
+    const userId = leave.userId; 
     const startDate = leave.startDate;
     const endDate = leave.endDate;
 
-    // Make API call to update leave status
+    
     this.lmsService.updateLeaveStatus(userId, startDate, endDate, status).subscribe(
       () => {
-        // Update the leave status in the local array
+        
         leave.status = status;
         console.log(`Leave ${status}:`, leave);
       },
@@ -96,4 +59,10 @@ export class LeaveManagementComponent implements OnInit {
       }
     );
   }
+  logout() {
+    this.toastr.success('Logout Sucessfully');
+    this.router.navigate(['/login']);
+    history.replaceState('', '', '/login');
+  }
+
 }

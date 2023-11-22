@@ -2,36 +2,39 @@
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #e9e3e3;
   }
   
   form {
-    max-width: 300px;
-    margin: 0 auto;
-    padding: 16px;
-    border: 1px solid #ccc; /* Add border to the form */
-    border-radius: 8px; /* Optional: Add border-radius for rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
+    max-width: 400px;
+    margin: 30px;
+    padding: 60px;
+   
+    height: 50vh; /* Adjust the height as needed */
+    position: fixed;
+    top: 40%;
+    right: 17%;
+    transform: translate(0%, -50%);
   }
+  
   
   label {
     display: block;
     margin-bottom: 8px;
-    color: #333;
+    color: #e9e4e4;
   }
   
   input {
-    width: 100%;
+    width: 130%;
     padding: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     box-sizing: border-box;
   }
   
   .error {
     color: red;
-    font-size: 14px;
-    margin-top: -8px;
-    margin-bottom: 16px;
+    font-size: 12px;
+    margin-top: 0px;
   }
   
   button {
@@ -39,9 +42,11 @@ h1 {
     color: white;
     padding: 10px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    width: 100%;
+    align-self: stretch; /* Make the button fill the width */
   }
+  
   
   button:disabled {
     background-color: #ccc;
@@ -51,10 +56,21 @@ h1 {
   p {
     text-align: center;
     margin-top: 16px;
-    color: #333;
+    color: #dad5d5;
   }
   
   a {
     color: #4caf50;
   }
-  
+  .back {
+    background-image: url('./../../assets/signUp background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+  }
+  .mandatory {
+    color: red;
+    font-size: 1.2em; 
+  }

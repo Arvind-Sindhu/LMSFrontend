@@ -1,4 +1,4 @@
-<!-- dashboard.component.html -->
+
 <div class="dashboard">
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav class="sidenav">
@@ -9,7 +9,7 @@
       </mat-nav-list>
     </mat-sidenav>
 
-    <!-- Move the content outside mat-sidenav-content -->
+    
     <div class="content">
       <div class="navbar">
         <button mat-icon-button (click)="sidenav.toggle()">
@@ -56,7 +56,7 @@
             <select id="leaveType" name="leaveType" [(ngModel)]="leaveApplication.leaveType" required>
               <option value="vacation">Vacation</option>
               <option value="sick">Sick Leave</option>
-              <!-- Add more options as needed -->
+              
             </select><br>
 
             <label for="reason">Reason:</label>
@@ -70,4 +70,4 @@
     </div> 
 
   </mat-sidenav-container>
-</div> <!-- Close .dashboard div -->
+</div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LMSService } from '../lms.service';
 import { LeaveApplication } from '../model';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-leave-status',
@@ -14,10 +16,10 @@ export class LeaveStatusComponent implements OnInit {
   managerNames: string[] = [];
   isPopupOpen = false;
 
-  constructor(private lmsService: LMSService) {}
+  constructor(private lmsService: LMSService, private router: Router,private toastr: ToastrService) { }
 
   ngOnInit() {
-    // Call the getLeaveStatusByuserId() method when the component is initialized
+
     this.getLeaveStatusByuserId();
     this.getManagerNames();
   }
@@ -28,7 +30,7 @@ export class LeaveStatusComponent implements OnInit {
     if (userId) {
       this.lmsService.getLeaveStatusByUserId(userId).subscribe(
         (data: any[] | undefined) => {
-          console.log('Leave Status Data:', data); // Log the received data
+          console.log('Leave Status Data:', data);
           this.leaveStatusData = data;
         },
         (error: any) => {
@@ -38,8 +40,9 @@ export class LeaveStatusComponent implements OnInit {
     }
   }
 
-  editLeave(leave: any) {debugger;
-    // Open the leave application popup with the leave details
+  editLeave(leave: any) {
+    debugger;
+
     this.leaveApplication = { ...leave };
     this.isPopupOpen = true;
   }
@@ -56,26 +59,24 @@ export class LeaveStatusComponent implements OnInit {
 
   submitUpdatedLeaveApplication() {
     debugger;
-     this.leaveApplication.userId=this.leaveApplication.userId;
-     this.leaveApplication.id=this.leaveApplication.id;
-     console.log(this.leaveApplication.id)
-    // Convert dates to strings before sending them to the server
+    this.leaveApplication.userId = this.leaveApplication.userId;
+    this.leaveApplication.id = this.leaveApplication.id;
+    console.log(this.leaveApplication.id)
+
     this.lmsService.updateLeaveApplication(this.leaveApplication).subscribe(
       (response) => {
         console.log(this.leaveApplication);
-        
+
         this.isPopupOpen = false;
-        location.reload();
+        
       },
-      (error) => {
-        console.error('Error updating leave:', error);
-        // You might want to show an error message to the user
-      }
-    );
+     );
+     location.reload();
+    
   }
 
   resetLeaveApplication() {
-    // Reset the form
+
     this.leaveApplication = {} as LeaveApplication;
   }
 
@@ -83,39 +84,36 @@ export class LeaveStatusComponent implements OnInit {
     this.isPopupOpen = false;
   }
 
-    deleteLeave(leave: any) {
-      debugger;
-      const confirmDelete = confirm('Are you sure you want to delete this leave entry?');
-    
-      if (confirmDelete) {
-        // Assuming you have an 'id' property in your leave object
-        const leaveId = leave.id;
-    
-        // Check if leaveId is defined and is a number
-        if (leaveId !== undefined && typeof leaveId === 'number') {
-          // Check if leaveStatusData is not undefined
-          if (this.leaveStatusData !== undefined) {
-            // Filter the array to exclude the deleted item
-            this.leaveStatusData = this.leaveStatusData.filter(item => item.id !== leaveId);
-          }
-    
-          // Call the deleteLeave method in your LMSService
-          this.lmsService.deleteLeave(leaveId).subscribe(
-            (response) => {
-              console.log('Leave deleted successfully:', response);
-            },
-            (error) => {
-              console.error('Error deleting leave:', error);
-              // You might want to show an error message to the user
-            }
-          );
-        } else {
-          console.error('Invalid leaveId:', leaveId);
-          // Handle the case where leaveId is not valid (e.g., show an error message)
-        }
-      }
+  deleteLeave(leave: any) {
+    debugger;
+    const confirmDelete = confirm('Are you sure you want to delete this leave entry?');
+
+    if (confirmDelete) {
+
+      const leaveId = leave.id;
+
+
+      this.lmsService.deleteLeave(leaveId).subscribe(
+        (response) => {
+          console.log('Leave deleted successfully:', response);
+        },
+        
+       
+      );
+      
+      location.reload();
+     
     }
-    
+  }
   
-  
+  logout() {
+    this.toastr.success('Logout Sucessfully');
+    this.router.navigate(['/login']);
+    history.replaceState('', '', '/login');
+  }
+
 }
+
+
+
+

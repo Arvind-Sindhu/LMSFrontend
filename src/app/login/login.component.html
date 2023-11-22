@@ -1,26 +1,26 @@
 <!-- login.component.html -->
+<div class="back">
+  <h1>Login To Leave Management System</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <!-- Email -->
+    <label for="email">Email<sup class="mandatory">*</sup>:</label>
+    <input type="email" id="email" formControlName="email">
+    <div *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched" class="error">
+      Email is required.
+    </div>
+    <div *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" class="error">
+      Enter a valid email address.
+    </div><br>
 
-<h1>Login to Leave Management System</h1>
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-  <!-- Email -->
-  <label for="email">Email:</label>
-  <input type="email" id="email" formControlName="email">
-  <div *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched" class="error">
-    Email is required.
-  </div>
-  <div *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" class="error">
-    Enter a valid email address.
-  </div><br>
+    <!-- Password -->
+    <label for="password">Password<sup class="mandatory">*</sup>:</label>
+    <input type="password" id="password" formControlName="password">
+    <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched" class="error">
+      Password is required.
+    </div><br>
 
-  <!-- Password -->
-  <label for="password">Password:</label>
-  <input type="password" id="password" formControlName="password">
-  <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched" class="error">
-    Password is required.
-  </div><br>
-
-  <!-- Submit Button -->
-  <button type="submit" [disabled]="!loginForm.valid">Login</button>
-</form>
-
-<p>Don't have an account? <a routerLink="/signup">Signup</a></p>
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    <p>Don't have an account? <a routerLink="/signup">Signup</a></p>
+  </form>
+</div>

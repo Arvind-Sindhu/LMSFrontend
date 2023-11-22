@@ -1,3 +1,22 @@
+<div class="dashboard">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav class="sidenav">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard">Home</a>
+        <a mat-list-item routerLink="/leave-management">Leave Management</a>
+        <a mat-list-item routerLink="/leave-status">Leave Status</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <div class="content">
+      <div class="navbar">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+     
+        <button class="logout-button" (click)="logout()">Logout</button>
+      </div>
+
+
 <div class="popup" *ngIf="isPopupOpen">
   <div class="popup-content">
     <button class="close-button" (click)="closeLeaveApplicationPopup()">X</button>
@@ -34,7 +53,7 @@
       <select id="leaveType" name="leaveType" [(ngModel)]="leaveApplication.leaveType" required>
         <option value="vacation">Vacation</option>
         <option value="sick">Sick Leave</option>
-        <!-- Add more options as needed -->
+       
       </select><br>
 
       <label for="reason">Reason:</label>

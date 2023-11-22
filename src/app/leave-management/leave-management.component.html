@@ -1,9 +1,27 @@
-<!-- leave-management.component.html -->
+<div class="dashboard">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav class="sidenav">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard">Home</a>
+        <a mat-list-item routerLink="/leave-management">Leave Management</a>
+        <a mat-list-item routerLink="/leave-status">Leave Status</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <div class="content">
+      <div class="navbar">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+     
+        <button class="logout-button" (click)="logout()">Logout</button>
+      </div>
+
+
 <div class="container">
     <h2>Leave Management</h2>
   
     <div *ngIf="leaveManagementData && leaveManagementData.length > 0; else noData">
-      <!-- Display data in a table -->
+      
       <table class="table">
         <thead>
           <tr>
@@ -23,7 +41,7 @@
             <td>{{ leave.endDate | date: 'shortDate' }}</td>
             <td>{{ leave.reason }}</td>
             <td>
-              <!-- Add buttons for approve and reject actions -->
+              
               <button (click)="approveLeave(leave)">Approve</button>
               <button (click)="rejectLeave(leave)">Reject</button>
             </td>
@@ -33,7 +51,7 @@
     </div>
   
     <ng-template #noData>
-      <!-- Display a message when there is no data -->
+      
       <p>No leave data available.</p>
     </ng-template>
   </div>

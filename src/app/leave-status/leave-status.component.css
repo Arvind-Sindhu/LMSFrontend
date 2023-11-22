@@ -98,4 +98,56 @@
     right: 10px;
    
   }
+  .dashboard {
+    height: 100vh; /* Ensure the dashboard takes up the full height of the viewport */
+    display: flex;
+    width: 100%;
+  }
+  
+  .sidenav-container {
+    flex: 100%; /* Fix the width of the sidenav container */
+  }
+  
+  .sidenav {
+    width: 200px;
+    background-color: rgb(167, 161, 161); /* Set the width of the sidenav */
+  }
+  
+  .content {
+    flex: 1; /* Allow the content to take up remaining space */
+    padding: 16px; /* Add padding for better spacing */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    width: 100%;
+  }
+  
+  .navbar button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .welcome {
+    font-weight: bold;
+  }
+  
+  .logout-button {
+    background-color: #d9534f; /* Bootstrap's danger color */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
    

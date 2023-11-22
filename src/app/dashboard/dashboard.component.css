@@ -1,24 +1,26 @@
-/* dashboard.component.css */
 
-/* General Styles */
+
 .dashboard {
-  height: 100vh; /* Ensure the dashboard takes up the full height of the viewport */
+  height: 100vh; 
   display: flex;
   width: 100%;
 }
 
 .sidenav-container {
-  flex: 100%; /* Fix the width of the sidenav container */
+  flex: 100%; 
 }
 
 .sidenav {
-  width: 200px; /* Set the width of the sidenav */
+  width: 200px;
+  background-color: rgb(167, 161, 161); /* Set the background color to black */
+  color: rgb(146, 144, 144); /* Set the text color to white */
 }
 
 .content {
   flex: 1; /* Allow the content to take up remaining space */
   padding: 16px; /* Add padding for better spacing */
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  box-sizing: border-box;
+ 
 }
 
 /* Navbar Styles */
@@ -44,7 +46,7 @@
 }
 
 .logout-button {
-  background-color: #d9534f; /* Bootstrap's danger color */
+  background-color: #c01610; /* Bootstrap's danger color */
   color: #fff;
   border: none;
   padding: 8px 12px;

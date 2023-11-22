@@ -4,6 +4,7 @@ import { LMSService } from '../lms.service';
 import { LeaveApplication } from '../model';
 import { HttpClient } from '@angular/common/http';
 import { MatSidenav } from '@angular/material/sidenav';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,7 @@ export class DashboardComponent {
   username: string | undefined;
   
 
-  constructor(private httpClient: HttpClient, private router: Router, private lmsService: LMSService) {}
+  constructor(private httpClient: HttpClient, private router: Router, private lmsService: LMSService,private toastr: ToastrService) {}
 
   ngOnInit() {
     // Retrieve the username from localStorage
@@ -57,23 +58,23 @@ export class DashboardComponent {
     if (userId !== null) {
       this.leaveApplication.userId = parseInt(userId, 10);
 
-      // Convert dates to strings before sending them to the server
+      
       this.lmsService.submitLeaveApplication(this.leaveApplication).subscribe(
         (response) => {
           console.log(this.leaveApplication);
         });
-      alert('Leave applied successfully');
+        this.toastr.success('Leave Submitted Sucessfully');
       this.closeLeaveApplicationPopup();
     }
   }
 
   resetLeaveApplication() {
-    // Reset the form
+  
     this.leaveApplication = {} as LeaveApplication;
   }
 
   logout() {
-    alert('Logout Successful');
+    this.toastr.success('Logout Sucessfully');
     this.router.navigate(['/login']);
     history.replaceState('','','/login');
   }
