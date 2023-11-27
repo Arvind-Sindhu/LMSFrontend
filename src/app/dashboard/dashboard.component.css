@@ -1,4 +1,6 @@
-
+button:hover {
+  background-color: #45a049;
+}
 
 .dashboard {
   height: 100vh; 

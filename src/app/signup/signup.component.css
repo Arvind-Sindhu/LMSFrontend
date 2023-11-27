@@ -47,7 +47,7 @@ button {
   padding: 10px;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: progress;
   align-self: stretch; /* Make the button fill the width */
 }
 
@@ -92,13 +92,38 @@ html, body {
   color: red;
   font-size: 1.2em; /* Adjust the font size as needed */
 }
+/* Add or adjust styles as needed */
+input {
+  width: calc(118% - 40px); /* Adjust the width to leave room for the eye image */
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* Adjust styles for the password container */
 .password-container {
   position: relative;
 }
 
-.toggle-password {
+/* Adjust styles for the password input */
+.password-container input {
+  width: 100%; /* Use 100% width for the input within the container */
+  padding-right: 40px; /* Adjust the padding to make room for the eye image */
+}
+
+/* Adjust styles for the eye icon button */
+.password-container button {
   position: absolute;
-  right: 10px;
-  top: 50%;
+  right: 0; /* Position the button at the extreme right */
+  top: 50%; /* Adjust the top position to vertically center the button */
+  transform: translateY(-50%);
+  background: none;
+  border: none;
   cursor: pointer;
+}
+
+/* Adjust styles for the eye icon image */
+.password-container button img {
+  width: 20px; /* Adjust the width of the eye image */
+  height: auto; /* Maintain the aspect ratio of the image */
 }

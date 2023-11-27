@@ -22,18 +22,23 @@
       Enter a valid email address.
     </div>
 
-    <!-- Password -->
-    <label for="password">Password<sup class="mandatory">*</sup>:</label>
-    <input type="password" id="password" formControlName="password">
-    <div *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched" class="error">
-      Password is required.
-    </div>
-    <div *ngIf="signupForm.get('password')?.hasError('minlength') && signupForm.get('password')?.touched" class="error">
-      Password must be at least 8 characters long.
-    </div>
-    <div *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched" class="error">
-      Password must contain at least one special character.
-    </div>
+   <!-- Password -->
+<label for="password">Password<sup class="mandatory">*</sup>:</label>
+<div class="password-container">
+  <input type="{{ showPassword ? 'text' : 'password' }}" id="password" formControlName="password">
+  <button type="button" (click)="togglePasswordVisibility()">
+    <img src="../../assets/view.png" alt="Toggle Password Visibility">
+  </button>
+</div>
+<div *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched" class="error">
+  Password is required.
+</div>
+<div *ngIf="signupForm.get('password')?.hasError('minlength') && signupForm.get('password')?.touched" class="error">
+  Password must be at least 8 characters long.
+</div>
+<div *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched" class="error">
+  Password must contain at least one special character.
+</div>
 
     <!-- Confirm Password -->
     <label for="confirmPassword">Confirm Password<sup class="mandatory">*</sup>:</label>

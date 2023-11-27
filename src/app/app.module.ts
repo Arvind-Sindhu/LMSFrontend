@@ -16,8 +16,10 @@ import { MatListModule } from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 
 import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -28,12 +30,15 @@ import { ToastrModule } from 'ngx-toastr';
     LeaveStatusComponent,
     LeaveManagementComponent,
    
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,ReactiveFormsModule,MatSidenavModule,MatListModule, BrowserAnimationsModule,MatIconModule,ToastrModule.forRoot()
+    FormsModule,ReactiveFormsModule,MatSidenavModule,MatListModule, BrowserAnimationsModule,MatIconModule,ToastrModule.forRoot(),
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
   ],
   providers: [LMSService],
   bootstrap: [AppComponent]

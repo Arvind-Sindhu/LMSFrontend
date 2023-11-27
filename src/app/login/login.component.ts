@@ -56,7 +56,8 @@ export class LoginComponent {
             localStorage.setItem('username', username);
             console.log('id and username stored in local storage:', id, username);
             this.toastr.success('Login successful! Welcome ' + username);
-            // Redirect to a different route or perform other actions upon successful login
+            localStorage.setItem('Token','7889139929abc');
+           
             this.router.navigate(['/dashboard'], { queryParams: { id: id, username: username } });
           }
         }

@@ -12,6 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 export class SignupComponent {
   // Reactive Form
   signupForm: FormGroup;
+  showPassword: boolean = false;
+
+togglePasswordVisibility() {
+  this.showPassword = !this.showPassword;
+}
 
   // Supabase Client
   supabase = createClient(
@@ -55,9 +60,7 @@ export class SignupComponent {
   passwordFieldType: string = 'password';
   confirmPasswordFieldType: string = 'password';
 
-  togglePasswordVisibility() {
-    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
-  }
+ 
 
   toggleConfirmPasswordVisibility() {
     this.confirmPasswordFieldType = this.confirmPasswordFieldType === 'password' ? 'text' : 'password';
@@ -65,6 +68,17 @@ export class SignupComponent {
 
 
   async signUp() {
+    const existingUser = await this.supabase
+      .from('usertable')
+      .select('*')
+      .eq('email', this.signupForm.value.email)
+      .single();
+ 
+    if (existingUser.data) {
+      // User already exists
+      this.toastr.error('User with this email already exists');
+      return;
+    }
     if (this.signupForm.valid) {
       // Form is valid, proceed with form submission
       const { username, email, password } = this.signupForm.value;
